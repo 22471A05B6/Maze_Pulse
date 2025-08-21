@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Game</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="container">
+    <h1>MazePulse</h1>
+
+    <div class="controls">
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="moderate">Moderate</option>
+        <option value="hard">Hard</option>
+      </select>
+      <button id="startBtn">Start Game</button>
+      <button id="hintBtn">💡 Hint</button>
+    </div>
+
+    <div class="info">
+      <div>⏱ Time: <span id="timer">0</span> sec</div>
+      <div>🧭 Moves: <span id="moves">0</span></div>
+      <div>🏆 Best: <span id="bestTime">--</span></div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="mazeCanvas"></canvas>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
