@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(120deg, #89f7fe, #66a6ff);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -60,11 +61,13 @@ button:hover {
   width: 100%;
   height: auto;
 }
+
+/* ✅ On-Screen Arrow Controls */
 .mobile-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .mobile-controls .middle-row {
@@ -87,11 +90,3 @@ button:hover {
   background: #f0c14b;
   transform: scale(0.95);
 }
-
-/* Hide controls on desktop (only show on mobile) */
-@media (min-width: 768px) {
-  .mobile-controls {
-    display: none;
-  }
-}
-

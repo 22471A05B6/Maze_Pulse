@@ -10,7 +10,7 @@ const hintBtn = document.getElementById('hintBtn');
 let maze = [];
 let playerPos = {x:0, y:0};
 let goalPos = {x:0, y:0};
-let cellSize = 40; // Will be updated dynamically
+let cellSize = 40; 
 let timer = 0;
 let moves = 0;
 let timerInterval;
@@ -19,7 +19,7 @@ let pulse = 0;
 let hintPath = [];
 let mazeSize = 6;
 
-// Maze generation using recursive backtracking
+// Maze generation
 function generateMaze(size){
   const maze = Array.from({length:size}, ()=>Array.from({length:size}, ()=>[true,true,true,true]));
   const visited = Array.from({length:size}, ()=>Array(size).fill(false));
@@ -40,7 +40,7 @@ function generateMaze(size){
   return maze;
 }
 
-// Update canvas size dynamically
+// Resize canvas
 function resizeCanvas(){
   const container = document.querySelector('.canvas-container');
   const maxContainer = Math.min(window.innerWidth * 0.95, window.innerHeight * 0.7);
@@ -69,7 +69,7 @@ function drawMaze(path=[]){
     }
   }
 
-  // Draw hint path
+  // Hint path
   if(path.length>0){
     const glow = Math.sin(pulse*2)*0.5 + 0.5;
     ctx.fillStyle = `rgba(255,255,0,${0.3 + glow*0.3})`;
@@ -78,14 +78,14 @@ function drawMaze(path=[]){
     });
   }
 
-  // Pulsing start
+  // Start
   ctx.fillStyle='rgba(0,0,255,0.6)';
   ctx.beginPath();
   const startR = cellSize/3 + Math.sin(pulse)*5;
   ctx.arc(playerPos.x*cellSize + cellSize/2, playerPos.y*cellSize + cellSize/2, startR,0,Math.PI*2);
   ctx.fill();
 
-  // Pulsing goal
+  // Goal
   ctx.fillStyle='rgba(0,200,0,0.6)';
   ctx.beginPath();
   const goalR = cellSize/3 + Math.sin(pulse+Math.PI/2)*5;
@@ -143,7 +143,7 @@ function startGame(){
   resizeCanvas();
 }
 
-// BFS hint path
+// Hint path
 function getHintPath(){
   const size=maze.length;
   const visited=Array.from({length:size}, ()=>Array(size).fill(false));
@@ -193,14 +193,14 @@ function celebrateWin(){
   requestAnimationFrame(frame);
 }
 
-// Animate pulsing
+// Animate
 function animate(){
   pulse+=0.1;
   drawMaze(hintPath);
   requestAnimationFrame(animate);
 }
 
-// Event listeners
+// Listeners
 hintBtn.addEventListener('click', ()=>{ 
   hintPath = getHintPath();
   drawMaze(hintPath);
@@ -215,12 +215,13 @@ document.addEventListener('keydown', e=>{
   }
 });
 window.addEventListener('resize', resizeCanvas);
-// Mobile controls
+
+// ✅ On-screen arrow buttons
 document.querySelector('.arrow.up').addEventListener('click', () => movePlayer(0, -1));
 document.querySelector('.arrow.down').addEventListener('click', () => movePlayer(0, 1));
 document.querySelector('.arrow.left').addEventListener('click', () => movePlayer(-1, 0));
 document.querySelector('.arrow.right').addEventListener('click', () => movePlayer(1, 0));
 
-// Initialize
+// Init
 startGame();
 animate();
